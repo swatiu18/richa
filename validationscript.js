@@ -1,0 +1,150 @@
+$(document).ready(function(){
+    $('#usernamevalidation').hide();
+    $('#passwordvalidation').hide();
+    $('#confirmpasswordvalidation').hide();
+    
+    var Error=true;
+    var email_error=true;
+    var passowrd_error=true;
+    var confirm_password_error=true;
+    
+    $('#username').keyup(function(){
+        username_validation();
+    });
+    
+    function username_validation(){
+        var username_val=$('#username').val();
+        if(username_val.length==''){
+            $('#usernamevalidation').show();
+            $('#usernamevalidation').html('Username Cannot be Empty');
+            $('#usernamevalidation').css('color','red');
+            Error=false;
+            return false;
+        }
+        else{
+            $('#usernamevalidation').hide();
+        }
+    
+        if(username_val.length<4 || username_val.length>15){
+            $('#usernamevalidation').show();
+            $('#usernamevalidation').html('Username should contain 4-15 characters');
+            $('#usernamevalidation').css('color','red');
+            Error=false;
+            return false;
+        }
+        else{
+            $('#usernamevalidation').hide();
+        }
+    }
+    
+    $('#email').keyup(function(){
+        email_validation();
+    });
+    
+    function email_validation(){
+        var email1= /^([\-\.0-9a-zA-Z]+)@([\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+        var email_val=$('#email').val();
+        if(email_val.length==''){
+            $('#emailvalidation').show();
+            $('#emailvalidation').html('Email Cannot be Empty');
+            $('#emailvalidation').css('color','red');
+            email_error=false;
+            return false;
+        }
+        else{
+            $('#emailvalidation').hide();
+        }
+    
+        if(!email1.test(email_val)){
+            $('#emailvalidation').show();
+            $('#emailvalidation').html('Please type Email in correct format');
+            $('#emailvalidation').css('color','red');
+            email_error=false;
+            return false;
+        }
+        else{
+            $('#emailvalidation').hide();
+        }
+    }
+    
+    $('#password').keyup(function(){
+        password_validation();
+    });
+    
+    function password_validation(){
+        var password1 = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        var password_val=$('#password').val();
+        if(password_val.length==''){
+            $('#passwordvalidation').show();
+            $('#passwordvalidation').html('Password Cannot be Empty');
+            $('#passwordvalidation').css('color','red');
+            passowrd_error=false;
+            return false;
+        }
+        else{
+            $('#passwordvalidation').hide();
+        }
+    
+        if(password_val.length<7){
+            $('#passwordvalidation').show();
+            $('#passwordvalidation').html('Password should contain atleast 8 characters');
+            $('#passwordvalidation').css('color','red');
+            passowrd_error=false;
+            return false;
+        }
+        else{
+            $('#passwordvalidation').hide();
+        }
+    
+        if(!password1.test(password_val)){
+            $('#passwordvalidation').show();
+            $('#passwordvalidation').html('Password should contain a small character,a number,a special character and a capital character');
+            $('#passwordvalidation').css('color','red');
+            passowrd_error=false;
+            return false;
+        }
+        else{
+            $('#passwordvalidation').hide();
+        }
+    
+    
+    }
+    
+    
+    $('#confirmpassword').keyup(function(){
+        confirm_password();
+    });
+    
+    function confirm_password(){
+        var confirm_password_val= $('#confirmpassword').val();
+        var password_val=$('#password').val();
+    
+        if(password_val!=confirm_password_val){
+            $('#confirmpasswordvalidation').show();
+            $('#confirmpasswordvalidation').html('Password does not match');
+            $('#confirmpasswordvalidation').css('color','red');
+            confirm_passowrd_error=false;
+            return false;
+        }
+        else{
+            $('#confirmpasswordvalidation').hide();
+        }
+    }
+    
+    
+    $('#submitvalidation').click(function(){
+        username_validation();
+        password_validation();
+        confirm_password();
+        email_validation();
+    
+        if(Error==true && passowrd_error==true && confirm_password_error==true && email_error==true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    
+    });
+    
+    }); 

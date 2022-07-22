@@ -1,0 +1,7 @@
+body {
+    background: url("https://cdn.pixabay.com/photo/2020/04/16/11/13/background-5050213_1280.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    } 
